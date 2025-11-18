@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- SECCIÓN HERO -->
+<section id="hero">
+    <h2>Tu asesoría de confianza en Hellín</h2>
+    <p>Soluciones fiscales, contables, laborables y jurídicas para autónomos, empresas y particulares.</p>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section id="nosotros">
+    <h2>Quiénes somos</h2>
+    <p>Desde 2011 contamos con una extensa experienciay profesionalidad en el sector y 
+        dirección de empresas. Deseamos, con trabajo, esfuerzo y constancia, ofrecer a sus clientes 
+        los mejores servicios de calidad y eficacia. En Vidalegal11 permanecemos atentos a la 
+        evolución del mercado para adaptarnos en todo momento a los cambios y nuevas orientaciones. 
+        Solo así podemos ofrecer un servicio integral y multidisciplinarioque dé respuesta precisa y eficaz a todas sus necesidades.</p>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+    <h2>Áreas de servicios</h2>
+
+    <div class="servicio">
+        <h3>Fiscal</h3>
+        <p>Descripción breve del servicio.</p>
+    </div>
+
+    <div class="servicio">
+        <h3>Contable</h3>
+        <p>Descripción breve del servicio.</p>
+    </div>
+
+    <div class="servicio">
+        <h3>Laboral</h3>
+        <p>Descripción breve del servicio.</p>
+    </div>
+
+    <div class="servicio">
+        <h3>Jurídica</h3>
+        <p>Descripción breve del servicio.</p>
+    </div>
+
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+    <h2>Contacto</h2>
+
+    <form method="POST" action="/contacto">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Mensaje:</label>
+        <textarea name="mensaje" rows="5" required></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+{% endblock %}
