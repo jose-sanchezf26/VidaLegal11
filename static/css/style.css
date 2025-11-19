@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Tinos;
+    src: url("../fonts/Tinos-Regular.ttf");
+}
+
 /* Reset básico */
 * {
     margin: 0;
@@ -7,7 +12,7 @@
 
 /* Fuente y fondo */
 body {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Tinos', serif;
     line-height: 1.6;
     color: #333;
     background-color: #E9DADC;
@@ -15,40 +20,87 @@ body {
 
 /* Header */
 header {
+    width: 100%;
     background-color: #852733;
     color: white;
-    padding: 40px 20px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
     text-align: center;
+    position: fixed;
+    z-index: 1000;
+    font-size: 1rem;
+    transition: 0.4s;
 }
 
 header img{
-    max-width: 550px;
+    max-width: 400px;
     width: 100%;
-    margin: 15px auto 30px;
+    align-items: center;
+    transition: 0.4s;
 }
 
 nav {
+    flex: auto;
+    margin-left: 50px;
     display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-header a{
-    color: white;
-    font-size: 15px;
-    text-decoration: none;
-    border: white 1px solid;
-    border-radius: 15px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-header a:hover {
+nav a{
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+    border: white 1px solid;
+    border-radius: 12px;
+    padding: 10px 20px;
+}
+
+nav a:last-child{
+    margin-left: auto;
+    color: #832633;
+    background-color: #fff;
+}
+
+nav a:hover {
     background-color: #fff;
     color: #832633;
     transition: 0.5s;
+}
+
+nav a:last-child:hover {
+    background-color: #832633;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.spacer {
+    height: 158px; /* Altura del header */
+    background-color: #832633;
+}
+
+#hero {
+    max-width: none;
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('../images/portada.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero .hero-overlay {
+    padding: 20px 30px;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    color: white;
+    max-width: 600px;
+    margin-bottom: 200px;
 }
 
 /* Secciones */
@@ -56,15 +108,6 @@ section {
     padding: 60px 20px;
     max-width: 900px;
     margin: auto;
-}
-
-/* Hero */
-#hero h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-#hero p {
-    font-size: 1.2em;
 }
 
 /* Servicios */
@@ -81,15 +124,18 @@ form {
     display: flex;
     flex-direction: column;
 }
+
 form label {
     margin-top: 10px;
 }
+
 form input, form textarea {
     padding: 10px;
     margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
+
 form button {
     margin-top: 15px;
     padding: 12px;
@@ -99,6 +145,7 @@ form button {
     border-radius: 5px;
     cursor: pointer;
 }
+
 form button:hover {
     background-color: #0066cc;
 }

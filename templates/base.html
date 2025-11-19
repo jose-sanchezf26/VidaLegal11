@@ -12,13 +12,29 @@
 
     <!-- HEADER -->
     <header>
-        <img src="{{ url_for('static', filename='images/logoVL.png') }}" alt="Logo Vidalegal11" class="logo">
+        <img src="{{ url_for('static', filename='images/logoVL.png') }}" alt="Logo Vidalegal11" class="logo" id="logo">
         <nav>
-            <a href="#nosotros" class="btn">Quiénes somos</a>
-            <a href="#servicios" class="btn">Servicios</a>
-            <a href="#contacto" class="btn">Contacto</a>
+            <a href="#nosotros">Quiénes somos</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#contacto">Ponte en contacto</a>
         </nav>
     </header>
+
+    <script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("logo").style.width = "200px";
+        document.querySelector("header").style.fontSize = "0.8rem";
+        document.querySelector("header").style.padding = "10px";
+    } else {
+        document.getElementById("logo").style.width = "400px";
+        document.querySelector("header").style.fontSize = "1rem";
+        document.querySelector("header").style.padding = "30px";
+    }
+    }
+    </script>
 
     <!-- CONTENIDO DINÁMICO -->
     <main>
