@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel Admin</title>
+</head>
+<body>
+
+<h1>Mensajes recibidos</h1>
+
+<a href="/admin/logout">Cerrar sesión</a>
+
+<ul>
+{% for msg in messages %}
+    <li>
+        <strong>{{ msg.name }} ({{ msg.email }})</strong><br>
+        {{ msg.content }}
+    </li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

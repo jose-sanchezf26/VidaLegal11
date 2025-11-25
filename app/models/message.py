@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, DateTime
+from sqlalchemy.sql import func
 from app.core.database import Base
 
 class Message(Base):
@@ -8,3 +9,5 @@ class Message(Base):
     name = Column(String(100), nullable=False)
     email = Column(String(150), nullable=False)
     content = Column(Text, nullable=False)
+    category = Column(String(50), nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
