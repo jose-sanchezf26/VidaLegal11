@@ -1,0 +1,72 @@
+---
+const links = [
+  { name: "Quiénes somos", href: "/quienes-somos" },
+  { name: "Servicios", href: "/servicios" },
+  { name: "Contacto", href: "/contacto" },
+];
+---
+
+
+<header id="header" class="w-full bg-[#832633] shadow-sm fixed top-0 left-0 z-50 transition-all duration-300">
+  <nav id="nav" class="text-xl max-w-7xl mx-auto flex items-center justify-between p-4 transition-all duration-300 relative">
+    <!-- Logo  -->
+    <a href="/"><img id="logo" src="/images/logoVL.png" alt="Logo Vida Legal" class="h-15 md:h-20 transition-all duration-300"/></a>
+    
+    <!-- Botón para móviles  -->
+    <button id="header-btn" class="md:hidden text-white text-2xl">&#9776;</button>
+
+
+    <!-- Hipelinks en dispositivos móviles  -->
+    <ul id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full flex-col gap-8  bg-[#832633]">
+      {links.map(link => (
+        <li class="border-b border-white p-2">
+          <a href={link.href} class="text-white hover:text-[#E9DADC] transition">
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+
+    <!-- Hipelinks de la página  -->
+    <ul id="menu" class="hidden md:flex gap-8 font-medium">
+      {links.map(link => (
+        <li>
+          <a href={link.href} class="text-white hover:text-[#E9DADC] transition">
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const mobileMenuBtn = document.getElementById("header-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  mobileMenuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  const header = document.getElementById("header");
+  const nav = document.getElementById("nav");
+  const logo = document.getElementById("logo");
+
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 30) {
+      header.classList.add("shadow-md");
+      nav.classList.replace("p-4", "p-2");
+      nav.classList.remove("text-xl")
+      logo.classList.replace("md:h-20", "md:h-12");
+      logo.classList.replace("h-15", "h-10");
+    } else {
+      header.classList.remove("shadow-md");
+      nav.classList.replace("p-2", "p-4");
+      nav.classList.add("text-xl")
+      logo.classList.replace("md:h-12", "md:h-20");
+      logo.classList.replace("h-10", "h-15");
+    }
+  });
+</script>
