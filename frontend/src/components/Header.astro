@@ -2,6 +2,10 @@
 const links = [
   { name: "Quiénes somos", href: "/quienes-somos" },
   { name: "Servicios", href: "/servicios" },
+];
+const linksMobile = [
+  { name: "Quiénes somos", href: "/quienes-somos" },
+  { name: "Servicios", href: "/servicios" },
   { name: "Contacto", href: "/contacto" },
 ];
 ---
@@ -18,8 +22,8 @@ const links = [
 
     <!-- Hipelinks en dispositivos móviles  -->
     <ul id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full flex-col gap-8  bg-[#832633]">
-      {links.map(link => (
-        <li class="border-b border-white p-2">
+      {linksMobile.map(link => (
+        <li class="border-b border-white p-2 text-center">
           <a href={link.href} class="text-white hover:text-[#E9DADC] transition">
             {link.name}
           </a>
@@ -37,6 +41,9 @@ const links = [
           </a>
         </li>
       ))}
+      <li>
+          <a href="/contacto" class="text-[#832633] p-3 rounded-xl border-2 border-white bg-white hover:text-white hover:bg-[#832633] transition">Contacto</a>
+        </li>
     </ul>
   </nav>
 </header>
