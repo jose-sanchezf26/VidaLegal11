@@ -65,7 +65,7 @@ const clientes = [
 
 <section id="servicios" class="w-full md:max-w-7xl pt-18 md:pt-20 mx-auto p-8">
   <!-- Título de la sección -->
-  <h1 class="text-[#832633] text-4xl font-bold mb-8 text-center md:text-left">
+  <h1 class="text-primary text-4xl font-bold mb-8 text-center md:text-left">
     Servicios
   </h1>
 
@@ -75,7 +75,7 @@ const clientes = [
     clientes.map((cliente) => (
       <div style={`background-image: url(${cliente.imagen});`} class="servicio-card group relative flex flex-col items-center gap-4 justify-center 
       bg-cover rounded-xl p-10 h-64 shadow-md transition hover:shadow-lg hover:scale-105 cursor-pointer">
-      <div class="absolute inset-0 bg-black/55 rounded-xl  group-hover:bg-[#832633]/80 servicio-overlay"></div>
+      <div class="absolute inset-0 bg-black/55 rounded-xl  group-hover:bg-primary/80 servicio-overlay"></div>
 
       <!-- Icono + Título -->
       <div class="relative flex flex-col items-center gap-4 transition-all duration-300 group-hover:opacity-0 
@@ -97,7 +97,7 @@ const clientes = [
     <!-- Separador -->
     <div class="w-full my-8 flex items-center gap-4">
       <div class="h-0.5 bg-gray-300 flex-1"></div>
-      <span class="text-xl font-semibold text-[#832633]">Ámbitos</span>
+      <span class="text-xl font-semibold text-primary">Ámbitos</span>
       <div class="h-0.5 bg-gray-300 flex-1"></div>
     </div>
 
@@ -108,7 +108,7 @@ const clientes = [
     servicios.map((servicio) => (
       <div style={`background-image: url(${servicio.imagen});`} class="servicio-card group relative flex flex-col items-center gap-4 justify-center 
       bg-cover rounded-xl p-10 h-64 shadow-md transition hover:shadow-lg hover:scale-105 cursor-pointer">
-      <div class="absolute inset-0 bg-black/55 rounded-xl  group-hover:bg-[#832633]/80 servicio-overlay"></div>
+      <div class="absolute inset-0 bg-black/55 rounded-xl  group-hover:bg-primary/80 servicio-overlay"></div>
 
       <!-- Icono + Título -->
       <div class="relative flex flex-col items-center gap-4 transition-all duration-300 group-hover:opacity-0 

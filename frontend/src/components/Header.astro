@@ -11,7 +11,7 @@ const linksMobile = [
 ---
 
 
-<header id="header" class="w-full bg-[#832633] shadow-sm fixed top-0 left-0 z-50 transition-all duration-300">
+<header id="header" class="w-full bg-primary shadow-sm fixed top-0 left-0 z-50 transition-all duration-300">
   <nav id="nav" class="text-xl max-w-7xl mx-auto flex items-center justify-between p-4 transition-all duration-300 relative">
     <!-- Logo  -->
     <a href="/"><img id="logo" src="/images/logoVL.png" alt="Logo Vida Legal" class="h-15 md:h-20 transition-all duration-300"/></a>
@@ -21,7 +21,7 @@ const linksMobile = [
 
 
     <!-- Hipelinks en dispositivos móviles  -->
-    <ul id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full flex-col gap-8  bg-[#832633]">
+    <ul id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full flex-col gap-8  bg-primary">
       {linksMobile.map(link => (
         <li class="border-b border-white p-2 text-center">
           <a href={link.href} class="text-white hover:text-[#E9DADC] transition">
@@ -42,7 +42,7 @@ const linksMobile = [
         </li>
       ))}
       <li>
-          <a href="/contacto" class="text-[#832633] p-3 rounded-xl border-2 border-white bg-white hover:text-white hover:bg-[#832633] transition">Contacto</a>
+          <a href="/contacto" class="text-primary p-3 rounded-xl border-2 border-white bg-white hover:text-white hover:bg-primary transition">Contacto</a>
         </li>
     </ul>
   </nav>
