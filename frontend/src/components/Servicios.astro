@@ -1,0 +1,159 @@
+---
+const servicios = [
+  {
+    titulo: "Contable",
+    icono: "/icons/contable.svg",
+    imagen: "/images/contable.jpg",
+    descripcion: `Más que números, le ofrecemos una contabilidad que sirve como una herramienta de dirección.
+    Registros y análisis claros para ayudarle en la toma de decisiones.`,
+  },
+  {
+    titulo: "Laboral",
+    icono: "/icons/laboral.svg",
+    imagen: "/images/laboral.jpg",
+    descripcion: `Gestión de nóminas, contratos y seguridad social con el rigor que exige la ley vigente. Le garantizamos tranquilidad
+    en la gestión de su equipo.`,
+  },
+  {
+    titulo: "Jurídico",
+    icono: "/icons/juridico.svg",
+    imagen: "/images/juridico.jpg",
+    descripcion: `Le protegemos legalmente. Desde la redacción de contratos hasta la resolución de conflictos, además de proporcionarle
+    el amparo y consejo legal para actuar con seguridad.`,
+  },
+  {
+    titulo: "Fiscal",
+    icono: "/icons/fiscal.svg",
+    imagen: "/images/fiscal.jpg",
+    descripcion: `Nuestra experiencia es clave para optimizar su carga tributaria. Le ofrecemos una planificación experta y 
+    adaptada a la legislación vigente para pagar solo lo necesario.`,
+  }
+];
+
+const clientes = [
+  {
+    titulo: "Autónomos",
+    icono: "/icons/autonomo.svg",
+    imagen: "/images/autonomo.jpg",
+    descripcion: `Le guiamos desde el inicio de su actividad. Gestión fiscal, laboral y contable para que su única preocupación sea 
+    hacer crecer su proyecto. Máxima agilidad y eficacia.`,
+  },
+  {
+    titulo: "Empresas",
+    icono: "/icons/empresas.svg",
+    imagen: "/images/empresas.jpg",
+    descripcion: `Más de 14 años de experiencia asesorando a empresas. Organizamos sus obligaciones para garantizar el cumplimiento legal y
+    la correcta toma de decisiones.`,
+  },
+  {
+    titulo: "Particulares",
+    icono: "/icons/particulares.svg",
+    imagen: "/images/particulares.jpg",
+    descripcion: `Ofrecemos un asesoramiento cercano y discreto en la gestión de impuestos, trámites y sucesiones. Le ayudamos a optimizar sus
+    obligaciones con total confianza.`,
+  },
+  {
+    titulo: "Comunidades de propietarios",
+    icono: "/icons/comunidadesPropietarios.svg",
+    imagen: "/images/comunidadPropietarios.jpg",
+    descripcion: `Simplificamos la gestión y administración de su comunidad. Le brindamos el rigor y la organización necesaria
+    para una gestión de cuentas clara.`,
+  }
+];
+---
+
+
+<section id="servicios" class="w-full md:max-w-7xl pt-18 md:pt-20 mx-auto p-8">
+  <!-- Título de la sección -->
+  <h1 class="text-[#832633] text-4xl font-bold mb-8 text-center md:text-left">
+    Servicios
+  </h1>
+
+  <div class="grid grid-cols-1 gap-y-5 lg:grid-cols-4 lg:gap-x-6">
+
+    {/* Aquí se mapean los servicios desdel array */
+    clientes.map((cliente) => (
+      <div style={`background-image: url(${cliente.imagen});`} class="servicio-card group relative flex flex-col items-center gap-4 justify-center 
+      bg-cover rounded-xl p-10 h-64 shadow-md transition hover:shadow-lg hover:scale-105 cursor-pointer">
+      <div class="absolute inset-0 bg-black/55 rounded-xl  group-hover:bg-[#832633]/80 servicio-overlay"></div>
+
+      <!-- Icono + Título -->
+      <div class="relative flex flex-col items-center gap-4 transition-all duration-300 group-hover:opacity-0 
+      group-hover:-translate-y-10 servicio-front">
+        <img class="relative w-12 h-12" src={cliente.icono} alt=""/>
+        <h2 class="relative text-center text-2xl font-semibold text-white">{cliente.titulo}</h2>
+      </div>
+
+      <!-- Descripción -->
+      <p class="absolute inset-0 flex items-center text-center justify-center text-white px-6 text-lg opacity-0 
+      translate-y-10 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 servicio-back">
+        {cliente.descripcion}
+      </p>
+    </div>
+    ))}
+
+  </div>
+
+    <!-- Separador -->
+    <div class="w-full my-8 flex items-center gap-4">
+      <div class="h-0.5 bg-gray-300 flex-1"></div>
+      <span class="text-xl font-semibold text-[#832633]">Ámbitos</span>
+      <div class="h-0.5 bg-gray-300 flex-1"></div>
+    </div>
+
+    <!-- Servicios -->
+    <div class="grid grid-cols-1 gap-y-5 lg:grid-cols-4 lg:gap-x-6">
+
+    {/* Aquí se mapean los servicios desdel array */
+    servicios.map((servicio) => (
+      <div style={`background-image: url(${servicio.imagen});`} class="servicio-card group relative flex flex-col items-center gap-4 justify-center 
+      bg-cover rounded-xl p-10 h-64 shadow-md transition hover:shadow-lg hover:scale-105 cursor-pointer">
+      <div class="absolute inset-0 bg-black/55 rounded-xl  group-hover:bg-[#832633]/80 servicio-overlay"></div>
+
+      <!-- Icono + Título -->
+      <div class="relative flex flex-col items-center gap-4 transition-all duration-300 group-hover:opacity-0 
+      group-hover:-translate-y-10 servicio-front">
+        <img class="relative w-12 h-12" src={servicio.icono} alt=""/>
+        <h2 class="relative text-center text-2xl font-semibold text-white">{servicio.titulo}</h2>
+      </div>
+
+      <!-- Descripción -->
+      <p class="absolute inset-0 flex items-center text-center justify-center text-white px-6 text-lg opacity-0 
+      translate-y-10 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 servicio-back">
+        {servicio.descripcion}
+      </p>
+    </div>
+    ))}
+
+  </div>
+
+</section>
+
+<style>
+  .servicio-card.active .servicio-front {
+  opacity: 0;
+  transform: translateY(-2.5rem); /* igual que -translate-y-10 */
+}
+
+.servicio-card.active .servicio-back {
+  opacity: 1;
+  transform: translateY(-2.5rem);
+}
+
+.servicio-card.active .servicio-overlay {
+  background-color: rgba(131,38,51,0.8); /* el color de overlay cuando está activo */
+}
+</style>
+
+<script>
+  // Seleccionamos todas las cards
+const servicioCards = document.querySelectorAll(".servicio-card");
+
+servicioCards.forEach(card => {
+  card.addEventListener("click", () => {
+    if (innerHeight < 768)
+      card.classList.toggle("active");
+  });
+});
+
+</script>
