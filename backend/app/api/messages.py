@@ -12,13 +12,9 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory="templates")
 
-@router.get("/")
-def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-@router.post("/contacto", response_model=MessageOut)
+@router.post("/api/contacto", response_model=MessageOut)
 async def send_message(name: str = Form(...), email: str = Form(...), content: str = Form(...), db: AsyncSession = Depends(get_db)):
     message = MessageCreate(name=name, email=email, content=content)
     category = classify_message(content)
     msg = await create_message(db, message, category)
-    return RedirectResponse(url="/", status_code=303)
+    return msg
