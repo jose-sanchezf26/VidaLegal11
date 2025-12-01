@@ -2,10 +2,12 @@
 const links = [
   { name: "Quiénes somos", href: "#quienes-somos" },
   { name: "Servicios", href: "#servicios" },
+  { name: "Datos de Contacto", href: "#datosContacto" },
 ];
 const linksMobile = [
   { name: "Quiénes somos", href: "#quienes-somos" },
   { name: "Servicios", href: "#servicios" },
+  { name: "Datos de Contacto", href: "#datosContacto" },
   { name: "Contacto", href: "/contacto" },
 ];
 ---
@@ -23,7 +25,7 @@ const linksMobile = [
     <!-- Hipelinks en dispositivos móviles  -->
     <ul id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full flex-col gap-8  bg-primary">
       {linksMobile.map(link => (
-        <li class="border-b border-white p-2 text-center">
+        <li class="border-b border-white p-2 text-center mobileBtn">
           <a href={link.href} class="text-white hover:text-[#E9DADC] transition">
             {link.name}
           </a>
@@ -51,10 +53,16 @@ const linksMobile = [
 <script>
   const mobileMenuBtn = document.getElementById("header-btn");
   const mobileMenu = document.getElementById("mobile-menu");
+  const mobileBtns = document.getElementsByClassName("mobileBtn");
 
   mobileMenuBtn.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
   });
+
+  for (let mobileBtn of mobileBtns) 
+    mobileBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
 
   const header = document.getElementById("header");
   const nav = document.getElementById("nav");
