@@ -6,20 +6,81 @@
 
 
   <!-- Formulario de contacto -->
-  <form action="http://localhost:8000/api/contacto" method="post" class="relative bg-gray-50 w-xl max-w-xl p-5 md:p-8 rounded-2xl shadow-2xl my-auto">
+  <form id="contactForm" method="post" class="relative bg-gray-50 w-xl max-w-xl p-5 md:p-6 rounded-2xl shadow-2xl my-auto">
     <h2 class="text-primary text-center text-4xl font-bold">
       ¡Hablemos!
     </h2>
     <p class="text-lg mt-4">Nombre y apellidos</p>
     <input type="text" name="name" class="text-lg w-full p-2 rounded-lg border mt-2"/>
     <p class="text-lg mt-4">Email</p>
-    <input type="text" name="email" class="text-lg w-full p-2 rounded-lg border mt-2"/>
+    <input type="email" name="email" class="text-lg w-full p-2 rounded-lg border mt-2"/>
     <p class="text-lg mt-4">Mensaje</p>
     <textarea name="content" rows="5" class="text-lg w-full p-2 rounded-lg border"></textarea>
 
-    <button class="w-full bg-primary text-white p-3 mt-5 rounded-lg shadow hover:bg-[#6d1f2a] transition">
+    <button id="submitBtn" class="w-full bg-primary text-white p-3 mt-5 rounded-lg shadow hover:bg-[#6d1f2a] transition">
       Enviar mensaje
     </button>
   </form>
 
+  <!-- Toast container -->
+  <p id="toastMsg" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-800 text-white border border-gray-700 px-5 py-3 rounded-lg opacity-0 transition-opacity duration-300 pointer-events-none"></p>
+
 </section>
+
+<script>
+  function showToast(message, type, duration = 5000) {
+    const toast = document.getElementById("toastMsg");
+    if (!toast) return;
+
+    if(type === "error") {
+      toast.classList.add("bg-red-600", "border-red-700");
+      toast.classList.remove("bg-gray-800", "border-gray-700");
+    } else {
+      toast.classList.add("bg-green-800", "border-green-700");
+      toast.classList.remove("bg-red-600", "border-red-700");
+    }
+
+    toast.textContent = message;
+    toast.classList.remove("opacity-0");
+
+    setTimeout(() => {
+      toast.classList.add("opacity-0");
+    }, duration);
+  }
+
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contactForm")! as HTMLFormElement;
+    const btn = document.getElementById("submitBtn")! as HTMLButtonElement;
+
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      // msg.textContent = "";
+      // msg.className = "text-center text-lg opacity-0 transition-opacity duration-300";
+
+      btn.disabled = true;
+
+      const data = new FormData(form);
+
+      try {
+        const res = await fetch("http://localhost:8000/api/contacto", {
+          method: "POST",
+          body: data
+        });
+
+        const json = await res.json();
+
+        if (!res.ok) throw new Error(json.detail || "Error al enviar el mensaje.");
+
+        showToast("Mensaje enviado con éxito.", "success");
+
+        form.reset();
+      } catch (err) {
+        showToast("Error al enviar el mensaje. Por favor, inténtalo de nuevo.", "error",);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+</script>
