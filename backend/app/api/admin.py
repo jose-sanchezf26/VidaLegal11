@@ -31,7 +31,7 @@ async def login(request: Request, username: str = Form(...), password: str = For
     )
 
 @router.get("/admin")
-async def admin_home(request: Request, db : AsyncSession = Depends(get_db)):
+async def admin_home(request: Request, db : AsyncSession = Depends(get_db), _ = Depends(require_admin)):
     result = await db.execute(select(Message).order_by(Message.created_at.desc()))
     messages = result.scalars().all()
     return templates.TemplateResponse("admin_home.html", {"request": request, "messages": messages})
