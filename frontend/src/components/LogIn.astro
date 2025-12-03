@@ -4,15 +4,15 @@
     <!-- Logo -->
     <img src="/images/logoVL.png" alt="Logo de VidaLegal11" class="w-xl">
     <!-- Cuadro de log in -->
-    <form id="contactForm" method="post" class="bg-gray-50 w-full md:w-xl max-w-xl p-5 rounded-2xl shadow-2xl my-auto">
+    <form id="form" method="post" class="bg-gray-50 w-full md:w-xl max-w-xl p-5 rounded-2xl shadow-2xl my-auto">
       <h2 class="text-primary text-center text-4xl font-bold">
       Inicio de sesión
       </h2>
       <p class="text-lg mt-4">Usuario</p>
-      <input type="text" name="name" class="text-lg w-full p-2 rounded-lg border border-gray-300 mt-2
+      <input type="text" name="username" class="text-lg w-full p-2 rounded-lg border border-gray-300 mt-2
       focus:ring focus:ring-primary focus:border-primary focus:outline-none focus:shadow-md"/>
       <p class="text-lg mt-4">Contraseña</p>
-      <input type="email" name="email" class="text-lg w-full p-2 rounded-lg border border-gray-300 mt-2
+      <input type="password" name="password" class="text-lg w-full p-2 rounded-lg border border-gray-300 mt-2
       focus:ring focus:ring-primary focus:border-primary focus:outline-none focus:shadow-md"/>
 
       <button id="submitBtn" class="w-full bg-primary text-white p-3 mt-5  rounded-lg shadow hover:bg-[#6d1f2a] transition">
@@ -22,3 +22,36 @@
   </div>
 
 </section>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form")! as HTMLFormElement;
+    const btn = document.getElementById("submitBtn")! as HTMLButtonElement;
+
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      const data = new FormData(form);
+
+      try {
+        const res = await fetch("http://localhost:8000/admin/login", {
+          method: "POST",
+          body: data,
+          credentials: "include",
+        });
+        console.log("STATUS:", res.status);
+        console.log("OK?:", res.ok);
+        const json = await res.json();
+
+        if (json.success) {
+          window.location.href = "/";
+          return;
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+</script>

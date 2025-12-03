@@ -9,7 +9,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 # ---- En producción deberías almacenar el pass encriptado.
 # Pero para tu proyecto local es suficiente así:
 def verify_admin(username: str, password: str) -> bool:
-    return username == ADMIN_USER and password == ADMIN_PASS
+    return username == ADMIN_USER and password == ADMIN_PASS 
 
 def create_session(username: str):
     return serializer.dumps({"user": username})

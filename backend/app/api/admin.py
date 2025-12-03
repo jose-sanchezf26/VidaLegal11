@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request, Form, Depends
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -18,17 +18,14 @@ async def login_form(request: Request):
 
 # ---- Login (POST)
 @router.post("/admin/login")
-async def login(request: Request, username: str = Form(...), password: str = Form(...)):
+async def login(username: str = Form(...), password: str = Form(...)):
     if verify_admin(username, password):
         session = create_session(username)
-        response = RedirectResponse(url="/admin", status_code=302)
+        response = JSONResponse({"success": True})
         response.set_cookie(key="session", value=session, httponly=True, max_age=86400)
         return response
-
-    return templates.TemplateResponse(
-        "admin_login.html",
-        {"request": request, "error": "Credenciales inválidas"}
-    )
+    
+    return JSONResponse(content={"success": False, "detail": "Credenciales inválidas"}, status_code=401)
 
 @router.get("/admin")
 async def admin_home(request: Request, db : AsyncSession = Depends(get_db), _ = Depends(require_admin)):
