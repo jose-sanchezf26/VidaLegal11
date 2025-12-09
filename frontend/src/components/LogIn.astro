@@ -15,15 +15,37 @@
       <input type="password" name="password" class="text-lg w-full p-2 rounded-lg border border-gray-300 mt-2
       focus:ring focus:ring-primary focus:border-primary focus:outline-none focus:shadow-md"/>
 
-      <button id="submitBtn" class="w-full bg-primary text-white p-3 mt-5  rounded-lg shadow hover:bg-[#6d1f2a] transition">
+      <button id="submitBtn" type="submit" class="w-full bg-primary text-white p-3 mt-5  rounded-lg shadow hover:bg-[#6d1f2a] transition">
       Entrar
       </button>
     </form>
   </div>
 
+  <p id="toastMsg" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-800 text-white border border-gray-700 px-5 py-3 rounded-lg opacity-0 transition-opacity duration-300 pointer-events-none"></p>
+
 </section>
 
 <script>
+    function showToast(message, type, duration = 5000) {
+    const toast = document.getElementById("toastMsg");
+    if (!toast) return;
+
+    if(type === "error") {
+      toast.classList.add("bg-red-600", "border-red-700");
+      toast.classList.remove("bg-gray-800", "border-gray-700");
+    } else {
+      toast.classList.add("bg-green-800", "border-green-700");
+      toast.classList.remove("bg-red-600", "border-red-700");
+    }
+
+    toast.textContent = message;
+    toast.classList.remove("opacity-0");
+
+    setTimeout(() => {
+      toast.classList.add("opacity-0");
+    }, duration);
+  }
+
   window.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form")! as HTMLFormElement;
     const btn = document.getElementById("submitBtn")! as HTMLButtonElement;
@@ -48,6 +70,7 @@
           return;
         }
       } catch (err) {
+        showToast("Inicio de sesión no válido", "error");
         console.error(err);
       } finally {
         btn.disabled = false;
