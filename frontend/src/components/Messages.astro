@@ -1,0 +1,74 @@
+---
+// Componente Messages.astro
+
+const categories = ["Todos", "Soporte", "Consultas", "Feedback"];
+
+const messages = [
+  { id: 1, name: "Juan", email: "juan@email.com", content: "Necesito ayuda con mi cuenta", category: "Soporte", created_at: "2025-12-09 10:00" },
+  { id: 2, name: "Ana", email: "ana@email.com", content: "¿Tienen planes premium?", category: "Consultas", created_at: "2025-12-09 11:00" },
+  { id: 3, name: "Luis", email: "luis@email.com", content: "La web es genial, gracias!", category: "Feedback", created_at: "2025-12-09 12:00" },
+  { id: 4, name: "Maria", email: "maria@email.com", content: "No puedo iniciar sesión", category: "Soporte", created_at: "2025-12-09 12:30" },
+];
+---
+
+<div class="p-6 max-w-5xl mx-auto mt-30">
+  <!-- Tabs de categorías -->
+  <div class="flex space-x-2 mb-6">
+  {categories.map((cat, index) => (
+    <button
+      class={`px-4 py-2 rounded font-semibold transition-colors ${index === 0 ? "bg-primary text-white" : "bg-gray-200 text-gray-800"}`}
+      data-category={cat}
+    >
+      {cat}
+    </button>
+  ))}
+</div>
+
+  <!-- Mensajes filtrados por categoría -->
+  <div class="space-y-4" id="messagesContainer"></div>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll("button[data-category]");
+  const container = document.getElementById("messagesContainer");
+
+  let activeCategory = "Todos";
+
+  function renderMessages(category) {
+    container.innerHTML = "";
+
+    const filtered = [
+      { id: 1, name: "Juan", email: "juan@email.com", content: "Necesito ayuda con mi cuenta", category: "Soporte", created_at: "2025-12-09 10:00" },
+      { id: 2, name: "Ana", email: "ana@email.com", content: "¿Tienen planes premium?", category: "Consultas", created_at: "2025-12-09 11:00" },
+      { id: 3, name: "Luis", email: "luis@email.com", content: "La web es genial, gracias!", category: "Feedback", created_at: "2025-12-09 12:00" },
+      { id: 4, name: "Maria", email: "maria@email.com", content: "No puedo iniciar sesión", category: "Soporte", created_at: "2025-12-09 12:30" },
+    ].filter(msg => category === "Todos" || msg.category === category);
+
+    filtered.forEach(msg => {
+      const div = document.createElement("div");
+      div.className = "border p-4 rounded shadow hover:shadow-md transition";
+      div.innerHTML = `<p class="font-bold">${msg.name} - ${msg.email}</p>
+                       <p class="mt-1">${msg.content}</p>
+                       <p class="text-sm text-gray-500 mt-2">${msg.created_at}</p>`;
+      container.appendChild(div);
+    });
+  }
+
+  // Inicial
+  renderMessages(activeCategory);
+
+  buttons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    // quitar clases de todos
+    buttons.forEach(b => b.classList.remove('bg-primary', 'text-white'));
+    buttons.forEach(b => b.classList.add('bg-gray-200', 'text-gray-800'));
+
+    // poner clases al seleccionado
+    btn.classList.add('bg-primary', 'text-white');
+    btn.classList.remove('bg-gray-200', 'text-gray-800');
+
+    activeCategory = btn.dataset.category;
+    renderMessages(activeCategory);
+  });
+  });
+</script>
