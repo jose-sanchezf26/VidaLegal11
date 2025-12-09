@@ -27,11 +27,9 @@ async def login(username: str = Form(...), password: str = Form(...)):
     
     return JSONResponse(content={"success": False, "detail": "Credenciales inválidas"}, status_code=401)
 
-@router.get("/admin")
-async def admin_home(request: Request, db : AsyncSession = Depends(get_db), _ = Depends(require_admin)):
-    result = await db.execute(select(Message).order_by(Message.created_at.desc()))
-    messages = result.scalars().all()
-    return templates.TemplateResponse("admin_home.html", {"request": request, "messages": messages})
+@router.get("/admin/messages")
+async def admin_messages(_ = Depends(require_admin)):
+    return JSONResponse({"success": True})
 
 # ---- Logout
 @router.get("/admin/logout")

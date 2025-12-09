@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+
+</Layout>
+
+<script>
+try {
+    // Hacemos un FETCH a una ruta protegida del backend. 
+    // Usamos "credentials: 'include'" para enviar la cookie de sesión.
+    const res = await fetch("http://localhost:8000/admin/messages", { 
+        method: 'GET',
+        credentials: 'include'
+    });
+    
+    // Si la respuesta no es 200 (OK), significa que la sesión falló.
+    if (!res.ok) {
+        window.location.href = "/admin/login";
+    }
+} catch (error) {
+    // Fallo de conexión o error general, redirigimos por seguridad.
+    window.location.href = "/admin/login";
+}
+</script>

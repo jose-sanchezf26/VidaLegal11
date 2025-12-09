@@ -28,6 +28,6 @@ def require_admin(request: Request):
         user = read_session(session)
 
     if not user:
-        raise HTTPException(status_code=302, headers={"Location": "/admin/login"})
+        raise HTTPException(status_code=307, headers={"Location": "/admin/login"})
 
     return user

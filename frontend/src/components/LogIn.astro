@@ -61,12 +61,16 @@
           body: data,
           credentials: "include",
         });
-        console.log("STATUS:", res.status);
-        console.log("OK?:", res.ok);
+        
+        if (res.status === 401) {
+          showToast("Inicio de sesión no válido", "error");
+          return;
+        }
+
         const json = await res.json();
 
         if (json.success) {
-          window.location.href = "/";
+          window.location.href = "/admin/messages";
           return;
         }
       } catch (err) {
